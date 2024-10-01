@@ -24,7 +24,9 @@
 - [#810]: Return `std::io::Error` from `Writer` methods.
 - [#811]: Split `NamespaceError` and `EncodingError` from `Error`.
 - [#811]: Renamed `Error::EscapeError` to `Error::Escape` to match other variants.
-- [#811]: `Bangtype` returns `SyntaxError` instead of `Error` since no other variant of `Error` is possible.
+- [#811]: Narrow down error return type from `Error` where only one variant is ever returned:
+  - `Bangtype` methods returns `SyntaxError`
+  - attribute related methods on `BytesStart` and `BytesDecl` returns `AttrError`
 
 [#227]: https://github.com/tafia/quick-xml/issues/227
 [#810]: https://github.com/tafia/quick-xml/pull/810
