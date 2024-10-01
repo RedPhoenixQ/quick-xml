@@ -169,7 +169,7 @@ pub enum Error {
     /// Encoding error
     Encoding(EncodingError),
     /// Escape error
-    EscapeError(EscapeError),
+    Escape(EscapeError),
     /// Namespace error
     Namespace(NamespaceError),
 }
@@ -219,7 +219,7 @@ impl From<EscapeError> for Error {
     /// Creates a new `Error::EscapeError` from the given error
     #[inline]
     fn from(error: EscapeError) -> Error {
-        Error::EscapeError(error)
+        Error::Escape(error)
     }
 }
 
@@ -248,7 +248,7 @@ impl fmt::Display for Error {
             Error::IllFormed(e) => write!(f, "ill-formed document: {}", e),
             Error::InvalidAttr(e) => write!(f, "error while parsing attribute: {}", e),
             Error::Encoding(e) => write!(f, "{}", e),
-            Error::EscapeError(e) => write!(f, "{}", e),
+            Error::Escape(e) => write!(f, "{}", e),
             Error::Namespace(e) => write!(f, "{}", e),
         }
     }
@@ -262,7 +262,7 @@ impl std::error::Error for Error {
             Error::IllFormed(e) => Some(e),
             Error::Encoding(e) => Some(e),
             Error::InvalidAttr(e) => Some(e),
-            Error::EscapeError(e) => Some(e),
+            Error::Escape(e) => Some(e),
             _ => None,
         }
     }
